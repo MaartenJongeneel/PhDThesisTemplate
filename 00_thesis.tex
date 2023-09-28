@@ -1,0 +1,177 @@
+\documentclass{src/thesis}  % uncomment for writing
+% \documentclass[print]{src/thesis} % uncomment for printing version
+
+% ------------------- PACKAGES ------------------- %
+\usepackage{amsmath}        %Used for math
+\usepackage{amsthm}         %Used for intermezzos
+\usepackage{lipsum}         %Used for dummy text
+\usepackage{longtable}      %Used to put nomenclature on multiple pages
+\usepackage{multicol}       %For multiple columns in table
+\usepackage{multirow}       %For multiple rows in table
+\usepackage{tcolorbox}      %For statements and contributions
+\usepackage{thmtools}       %For declaring theorems
+\usepackage{todonotes}      %For to do notes
+%\usepackage{tikz}          %The tikz package is added in mrthesis.cls for producing thumbindex
+\usepackage{url}            %To provide urls in the document
+\usepackage[hidelinks]{hyperref} %For hyperlinks in the document
+\usepackage{bookmark}       %Works with hyperref to setup styles and colors
+\usepackage{enumitem}       %To shift items in itemize left
+\usepackage{wrapfig}        %To wrap text around a figure
+
+
+
+
+
+
+% ------------------- PREAMBLE ------------------- %
+\include{src/commands}
+\include{src/tikz}
+
+\declaretheorem[name={Remark},style=plain,numberwithin=chapter]{rmk}
+\declaretheorem[name={Definition},style=definition,numberwithin=chapter]{dfn}
+\declaretheorem[name={Theorem},qed=$\blacktriangle$,style=plain,numberwithin=chapter]{thm}
+\declaretheorem[name={Lemma},qed=$\blacktriangle$,style=plain,numberwithin=chapter]{lem}
+\declaretheorem[name={Assumption},style=definition,numberwithin=chapter]{asm}
+\declaretheorem[name={Property},style=plain,numberwithin=chapter]{prop}
+\declaretheorem[name={Example},style=plain,numberwithin=chapter]{example}
+\declaretheorem[name={Corollary},qed=$\blacktriangle$,style=plain,numberwithin=chapter]{cor}
+\declaretheorem[name={Intermezzo},style=definition,numberwithin=chapter]{intermez}
+
+\graphicspath{{img/}{../../img/}{../../../img/}}
+
+
+% ------------------- Document colors -------------------%
+% DEEP BLUE
+\definecolor{thumbcolor}{RGB}{250,180,140}
+\definecolor{deepcolor}{RGB}{0,0,0}
+\definecolor{titlecolor}{RGB}{238,112,35}
+
+
+% ------------------- Document Details -------------------%
+%Author details
+\author{Author Name}
+\newcommand{\placeofbirth}{Birthplace}
+
+%Defense details
+\renewcommand{\year}{2023}
+\newcommand{\defensedate}{maandag 30 december 2022}
+\newcommand{\defensetime}{16:00}
+\newcommand{\rector}{prof. dr. Rector}
+
+%Thesis details
+\newcommand{\maintitle}{Awesome thesis title}
+\newcommand{\subtitle}{with an awesome subtitle}
+\newcommand{\isbn}{123-45-678-9012-3}     % 123boldmath-45-678-9012-3
+\newcommand{\printer}{Name of printer || www.printerswebsite.nl}
+\newcommand{\designer}{Name of cover designer}
+\newcommand{\project}{Here you can put the acknowledgment in case this thesis is partially 
+supported by the Research Project XXX through the European Union H2020 
+program under GA XXXXXX.}
+
+%Details about the committee (note that there should be NO space between titles (prof.dr.)
+\newcommand{\chair}{prof.dr. Name Surname}
+\newcommand{\promotor}{prof.dr. Name Surname}
+\newcommand{\copromotor}{prof.dr. Name Surname}
+\newcommand{\firstmember}{prof.dr. Name Surname}
+\newcommand{\secondmember}{prof.dr. Name Surname}
+\newcommand{\thirdmember}{prof.dr. Name Surname}
+\newcommand{\fourthmember}{prof.dr. Name Surname}
+% other relevant meta data about the thesis can be found in preface.tex
+
+\makeatletter % generates all the \author stuff
+
+\begin{document} 
+\pagenumbering{roman}
+\thispagestyle{empty}
+
+% ------------------- Front Cover -------------------%
+% \cover{thesis_front.pdf}    % Adds your thesis' front cover if the option 'print' is NOT used. Printing companies require the thesis cover to be supplied separately and in a different format. Definition of \cover{} is given in commands.tex.
+
+% ------------------- First Sections -------------------%
+\include{01_preface}
+\include{02_abstract}
+\include{03_samenvatting}
+\include{04_societal_summary}
+
+% ------------------- Nomenclature -------------------%
+\cleardoublepage
+\pdfbookmark{\contentsname}{Contents}
+\tableofcontents
+
+\newpage
+\include{05_nomenclature}
+
+%%%% MAIN MATTERS *************************************************************
+% This state variable is used for creating the thumb index by indicating that
+% the following chapter is numbered (i.e. not \chapter*{})
+\placethumbtrue %Place thumbs from this point onwards
+\cleardoublepage
+\thispagestyle{empty}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\part{Background}\label{part: intro}
+\include{06_CH1_Introduction}
+
+% ------------------- FIRST PART -------------------%
+\cleardoublepage
+\part{Second chapter}\label{part: design}
+\include{06_CH2_dummy}
+
+% ------------------- SECOND PART -------------------%
+\cleardoublepage
+\part{Third part}\label{part: something}
+\include{06_CH3_dummy_2}
+
+% ------------------- THIRD PART -------------------%
+\part{Closing}\label{part: closing}
+\include{06_CH4_conclusions}
+
+% -------------------- APPENDIX --------------------%
+\part{Appendices}\label{part: Appendices}
+\appendix
+\cleardoublepage
+
+\definecolor{thumbcolor}{gray}{0.4}     % Change the color of the thumb index tags to gray
+\include{07_appendix}
+
+% ------------------- BACK PART -------------------%
+\placethumbfalse   % Stop putting thumbs from this point onwards
+\bookmarksetup{startatroot}
+\addtocontents{toc}{\bigskip}%
+
+% -------------- BIBLIOGRAPHY ------------ %
+{\fontsize{9pt}{10pt}\selectfont
+\bibliographystyle{IEEEtran}
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliography{src/bibliography}
+% \nobibliography{src/bibliography}
+
+}
+
+% -------------- MODIFICATIONS ------------- %
+\include{08_modifications.tex}
+
+% ------------- ACKNOWLEDGEMENT ------------ %
+\normalsize
+\include{09_acknowledgement}
+
+% --------------- PUBLICATIONS ------------- %
+\newpage
+\include{10_publications}
+
+% -------------------- CV ------------------ %
+\include{11_cv}
+\thispagestyle{empty}
+
+\ifprint{}
+\else
+\newpage {~}
+\thispagestyle{empty}
+\fi
+
+%%%% BACK **********************************************************************
+% \cover{thesis_back.pdf}    % Adds your thesis' back cover if the option 'print' is NOT used. Printing companies require the thesis cover to be supplied separately and in a different format. Definition of \cover{} is given in commands.tex.
+
+\end{document}
