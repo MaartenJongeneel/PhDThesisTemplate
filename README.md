@@ -7,6 +7,8 @@ The figure below shows a screenshot of some of the pages to give an impression o
 <img src="img/sample.png" width="100%" >
 <br><br>
 
+Alternatively, you can take a look at the [PhD_Thesis_Template.pdf](PhD_Thesis_Template.pdf) file to examine the full template.
+
 # Editing of the document / compilation into PDF
 
 Editing the document can be done in various manners, depending on your own preference. 
