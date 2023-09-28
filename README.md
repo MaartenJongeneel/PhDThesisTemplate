@@ -36,7 +36,7 @@ You will have to create your own account on Overleaf, if you haven't done so.
 
 See for instructions on how to add Overleaf as a remote branch this instruction: [Creating an Overleaf project from an existing Git repository](https://www.overleaf.com/learn/how-to/Using_Git_and_GitHub).
 
-1. To start with, we assume that you have cloned this git repo on your computer.
+1. To start with, we assume that you git on your computer.
 
 2. Create a new project on Overleaf. You can do this from your My Projects dashboard. You might as well use the 'Blank' template, since we're going to overwrite it.
 
@@ -45,6 +45,8 @@ See for instructions on how to add Overleaf as a remote branch this instruction:
 4. Add the git link for the project as a remote in your local project. 
 
 ```bash
+cd PhDThesisTemplate
+git remote add overleaf <GIT-URL>
 git checkout master
 git pull overleaf master --allow-unrelated-histories
 ```
