@@ -13,14 +13,11 @@
 
 % To create a blank footnote:
 \newcommand\blfootnote[1]{%
-  \let\thefootnote\relax\footnotetext{#1}%
-  \let\thefootnote\svthefootnote%
-}
-\newcounter{numfootnote}
-\newcommand\numfootnote[1]{%
-    \stepcounter{numfootnote}%
-    \newcommand{\thefootnote}{\thenumfootnote}%
-    \footnote{#1}
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+  \vspace{-0.4cm} %correct for the whitespace it occupies
 }
 
 
