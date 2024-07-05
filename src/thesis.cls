@@ -5,7 +5,7 @@
 % Version: 28-09-2023, Clean up by Maarten Jongeneel
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{thesis}[2023/01/18 PhD thesis class - Thesis Author]
+\ProvidesClass{src/thesis}[2023/01/18 PhD thesis class - Thesis Author]
 
 %%% COLOR/STYLE OF THESIS %%%
 \RequirePackage{xcolor}
